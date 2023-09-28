@@ -20,7 +20,7 @@ function NewPost(props) {
             author: nameText,
             body: bodyText
         }
-        console.log(submitData);
+        props.onSubmit(submitData);
         props.onClose();
     };
 

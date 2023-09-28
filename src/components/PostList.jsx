@@ -6,10 +6,16 @@ import Modal from "./Modal";
 
 const PostList = (props) => {
 
+    const [posts, setposts] = useState([]);
+
+    const onSubmitHandler = (submitData) => {
+        setposts((previousData) => [submitData, ...previousData]);
+    };
+
     return (
         <>
         {props.isVisable && <Modal onClose={props.onClose}>
-        <NewPost onClose={props.onClose}
+        <NewPost onClose={props.onClose} onSubmit={onSubmitHandler}
             bodyText={'React is awesome'} 
             nameText={'Ant'}/>
         </Modal>}
