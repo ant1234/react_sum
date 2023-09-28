@@ -19,9 +19,17 @@ const PostList = (props) => {
             bodyText={'React is awesome'} 
             nameText={'Ant'}/>
         </Modal>}
-        <ul className={classes.posts}>
-            <Post name={'Ant'} description={'React is awesome'} />
-        </ul>
+        {posts.length > 0 && 
+            <ul className={classes.posts}>
+                {posts.map((post) => { return (<Post key={post.body} name={post.author} description={post.body} />)})}
+            </ul>
+        }
+        {posts.length === 0 && 
+        <div style={{textAlign: 'center', color: 'white' }}>
+            <h2>There are no posts yet</h2>
+            <p>Go ahead and add some</p>
+        </div>
+        }
         </>
 
     );
