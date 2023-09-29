@@ -7,12 +7,15 @@ import Modal from "./Modal";
 const PostList = (props) => {
 
     const [posts, setposts] = useState([]);
+    const [loading, setLoading] = useState(false);
 
     useEffect(() => {
+        setLoading(true);
         async function sendGetRequest() {
              const response = await fetch('http://localhost:8080/posts');
              const resData = await response.json();
              setposts(resData.posts);
+             setLoading(false);
             
         }
         sendGetRequest();
@@ -36,16 +39,21 @@ const PostList = (props) => {
             bodyText={'React is awesome'} 
             nameText={'Ant'}/>
         </Modal>}
-        {posts.length > 0 && 
+        {!loading && posts.length > 0 && 
             <ul className={classes.posts}>
                 {posts.map((post) => { return (<Post key={post.body} name={post.author} description={post.body} />)})}
             </ul>
         }
-        {posts.length === 0 && 
+        {!loading && posts.length === 0 && 
         <div style={{textAlign: 'center', color: 'white' }}>
             <h2>There are no posts yet</h2>
             <p>Go ahead and add some</p>
         </div>
+        }
+        {loading &&
+            <div style={{textAlign: 'center', color: 'white' }}>
+                <h2>Loading ...</h2>
+            </div>
         }
         </>
 
