@@ -1,6 +1,6 @@
 import Post from "./Post";
 import classes from "./PostList.module.css";
-import NewPost from "./NewPost";
+import NewPost from "../routes/NewPost";
 import { useEffect, useState } from "react";
 import Modal from "./Modal";
 
